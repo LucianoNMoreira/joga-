@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
   }
 
   const logout = () => {
-    Cookies.set('user', null)
+    Cookies.remove('user')
     setUser(null)
     redirect('/')
   }
