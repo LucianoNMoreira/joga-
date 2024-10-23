@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
     })
 
     const user = response.data
-    Cookies.set('user', null)
+    Cookies.set('user', JSON.stringify(user))
     setUser(user)
     redirect('/dashboard')
   }
