@@ -1,0 +1,13 @@
+#sidebar-component {
+    padding: 20px 15px;
+    background-color: #f0f0f0;
+    height: 100%;
+
+    ul {
+        padding-top: 20px;
+
+        li {
+            margin-top: 15px;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+#login-page {
+
+    padding: 30px;
+
+    form {
+        display: block;
+
+        div {
+            margin-bottom: 20px;
+        }
+    }
+}
