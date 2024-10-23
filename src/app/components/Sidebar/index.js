@@ -2,29 +2,45 @@
 
 import Link from 'next/link'
 import './styles.css'
-import { redirect } from "next/navigation"
-import Cookies from 'js-cookie'
+import { useUser } from '@/app/Contexts/UserContext'
+import { useEffect } from 'react'
 
 export default function Sidebar() {
-    const handleLogout = () => {
-        Cookies.set('user', null)
-        window.location.href = '/'
-    }
+    const { user, logout } = useUser()
 
-    return(
-        <div id='sidebar-component'>
-            <h3>Sidebar</h3>
-            <ul>
-                <li>
-                    <Link href='/'>Início</Link>
-                </li>
-                <li>
-                    <a href='/login'>Login</a>
-                </li>
-                <li>
-                    <button onClick={ handleLogout }>Sair</button>
-                </li>
-            </ul>
-        </div>
+    useEffect(() => {
+        console.debug('Sidebar user', user)
+    }, [user])
+
+    return (
+        <>
+            <div id='sidebar-component'>
+                <h3>Sidebar</h3>
+                <p>{user && user.name}</p>
+
+                <ul>
+                    <li>
+                        <Link href={user ? '/dashboard' : '/'}>Início</Link>
+                    </li>
+
+                    {!user &&
+                        <>
+                            <li>
+                                <Link href='/login'>Login</Link>
+                            </li>
+                        </>
+                    }
+
+                    {user && 
+                        <>
+                            <li>
+                                <button onClick={ logout }>Sair</button>
+                            </li>
+                        </>
+                    }
+                </ul>
+            </div>
+        </>
     )
+
 }

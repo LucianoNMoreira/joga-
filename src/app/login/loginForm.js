@@ -8,9 +8,6 @@ export default function LoginForm({ onSubmit }) {
   const [password, setPassword] = useState('123123')
 
   const handleSubmit = (ev) => {
-    // Não deixa o form submeter a página, pois iremos chamar uma API
-    // ev.preventDefault()
-
     onSubmit && onSubmit({
       email: email,
       password: password

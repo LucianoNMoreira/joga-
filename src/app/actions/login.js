@@ -18,5 +18,5 @@ export async function login(loginData) {
 
 	Cookies.set('user', JSON.stringify(user))
 
-	redirect('/')
+	redirect('/dashboard')
 }

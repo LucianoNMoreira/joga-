@@ -1,8 +1,11 @@
+'use client'
+
 import localFont from "next/font/local";
 import "./globals.css";
-import Nav from './components/Nav'
-import Footer from "./components/Footer";
-import Sidebar from "./components/Sidebar";
+import Nav from './Components/Nav'
+import Footer from "./Components/Footer";
+import Sidebar from "./Components/Sidebar";
+import { UserProvider } from "./Contexts/UserContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,31 +18,35 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata = {
-  title: "Jogaê",
-  description: "Eventos esportivos amadores próximos a você",
-};
+// export const metadata = {
+//   title: "Jogaê",
+//   description: "Eventos esportivos amadores próximos a você",
+// };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`} >
 
-        <Nav/>
+        <UserProvider>
 
-        <div id='content-layout'>
+          <Nav/>
 
-          <div id='sidebar'>
-            <Sidebar />
+          <div id='content-layout'>
+
+            <div id='sidebar'>
+              <Sidebar />
+            </div>
+
+            <main id='main-content'>
+              {children}
+
+              <Footer/>
+            </main>
           </div>
 
-          <main id='main-content'>
-            {children}
+        </UserProvider>
 
-            <Footer/>
-          </main>
-
-        </div>
 
       </body>
     </html>
