@@ -19,9 +19,7 @@ export async function middleware(request) {
     if (path === '/') {
       return NextResponse.redirect(new URL('/dashboard', request.url))
     }
-  }
-
-  if (!user) {
+  } else {
     if (path === '/dashboard') {
       return NextResponse.redirect(new URL('/login', request.url))
     }
@@ -30,5 +28,5 @@ export async function middleware(request) {
  
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: [ '/login', '/dashboard' ],
+  matcher: [ '/', '/login', '/dashboard' ],
 }
