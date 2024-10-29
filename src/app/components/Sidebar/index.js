@@ -22,6 +22,9 @@ export default function Sidebar() {
                     <li>
                         <Link href={user ? '/dashboard' : '/'}>Início</Link>
                     </li>
+                    <li>
+                        <Link href={user ? '/esportes' : '/'}>Esportes</Link>
+                    </li>
 
                     {!user &&
                         <>
