@@ -1,5 +1,6 @@
-export default function Page({ params }) {
-  const slug = params.slug
+
+export default async function Page({ params }) {
+  const { slug } = await params
 
   return (
     <>
