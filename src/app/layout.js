@@ -1,5 +1,3 @@
-'use client'
-
 import localFont from "next/font/local";
 import "./globals.css";
 import Nav from './Components/Nav'
@@ -18,10 +16,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// export const metadata = {
-//   title: "Jogaê",
-//   description: "Eventos esportivos amadores próximos a você",
-// };
+export const metadata = {
+  title: "Jogaê",
+  description: "Eventos esportivos amadores próximos a você",
+};
 
 export default function RootLayout({ children }) {
   return (

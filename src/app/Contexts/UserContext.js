@@ -15,15 +15,20 @@ export const UserProvider = ({ children }) => {
   const login = async (email, password) => {
     console.log('UserContext login', email, password)
 
-    const response = await axios.post('/api/v1/auth', {
-        email: email,
-        password: password
-    })
-
-    const user = response.data
-    Cookies.set('user', JSON.stringify(user))
-    setUser(user)
-    redirect('/dashboard')
+    try {
+      const response = await axios.post('/api/v1/auth', {
+          email: email,
+          password: password
+      })
+  
+      const user = response.data
+      Cookies.set('user', JSON.stringify(user))
+      setUser(user)
+      redirect('/dashboard')
+    } catch(e) {
+      // alert("Deu ruim")
+      redirect('/login')
+    }
   }
 
   const logout = () => {
