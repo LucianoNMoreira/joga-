@@ -5,6 +5,17 @@ import './styles.css'
 import { useUser } from '@/app/Contexts/UserContext'
 import { useEffect } from 'react'
 
+export function createMenuItems(user) {
+    const items = [
+        { href: '/', name: 'Início' },
+        { href: '/esportes', name: 'Esportes' },
+    ]
+    if (!user) {
+        items.push({ href: '/login', name: 'Login' })
+    }
+    return items
+}
+
 export default function Sidebar() {
     const { user, logout } = useUser()
 
@@ -15,29 +26,21 @@ export default function Sidebar() {
     return (
         <>
             <div id='sidebar-component'>
+                <p>{user && `Olá, ${user.name}`}</p>
+
                 <h3>Sidebar</h3>
-                <p>{user && user.name}</p>
 
                 <ul>
-                    <li>
-                        <Link href={user ? '/dashboard' : '/'}>Início</Link>
-                    </li>
-                    <li>
-                        <Link href={'/esportes'}>Esportes</Link>
-                    </li>
-
-                    {!user &&
-                        <>
-                            <li>
-                                <Link href='/login'>Login</Link>
-                            </li>
-                        </>
-                    }
+                    {createMenuItems(user).map((item) => {
+                        return (
+                            <li key={item.href}><Link href={item.href}>{item.name}</Link></li>
+                        )
+                    })}
 
                     {user && 
                         <>
                             <li>
-                                <button onClick={ logout }>Sair</button>
+                                <button data-testid='logout-button' onClick={ logout }>Sair</button>
                             </li>
                         </>
                     }
