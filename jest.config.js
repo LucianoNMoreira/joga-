@@ -177,7 +177,7 @@ const config = {
   // A map from regular expressions to paths to transformers
   // transform: undefined,
   transform: {
-		'^.+\\.js?$': 'babel-jest',
+		'^.+\\.(js|jsx)$': ['babel-jest', { presets: ['next/babel'] }],
 		'.+\\.(css)$': 'jest-transform-stub',
 	},
 
