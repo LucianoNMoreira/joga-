@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useState, useEffect } from 'react'
 import Cookies from 'js-cookie'
-import { redirect } from 'next/navigation'
+// import { redirect } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
 const UserContext = createContext()
@@ -11,6 +12,7 @@ export const useUser = () => useContext(UserContext)
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState()
   const [updatedAt, setUpdatedAt] = useState()
+  const router = useRouter()
 
   const login = async (email, password) => {
     console.log('UserContext login', email, password)
@@ -24,10 +26,10 @@ export const UserProvider = ({ children }) => {
       const user = response.data
       Cookies.set('user', JSON.stringify(user))
       setUser(user)
-      redirect('/dashboard')
+      router.push('/dashboard')
     } catch(e) {
       // alert("Deu ruim")
-      redirect('/login')
+      router.push('/login')
     }
   }
 
