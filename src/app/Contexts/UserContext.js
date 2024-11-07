@@ -36,7 +36,7 @@ export const UserProvider = ({ children }) => {
   const logout = () => {
     Cookies.remove('user')
     setUser(null)
-    redirect('/')
+    router.push('/')
   }
 
   useEffect(() => {
